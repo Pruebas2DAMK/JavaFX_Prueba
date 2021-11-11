@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="file://E:/DAM2/ADA/JavaFX/javafx-sdk-17.0.1/lib" />
+      <root url="jar://E:/DAM2/ADA/mysql-connector-java-8.0.27.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://E:/DAM2/ADA/JavaFX/javafx-sdk-17.0.1/lib" recursive="false" />
+  </library>
+</component>
