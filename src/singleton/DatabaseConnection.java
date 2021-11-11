@@ -2,15 +2,15 @@ package singleton;
 
 import java.sql.*;
 
-public class ConexionBD {
-    private static ConexionBD INSTANCE;
+public class DatabaseConnection {
+    private static DatabaseConnection INSTANCE;
     private final Connection con;
 
-    public Connection getCon() {
+    public Connection getConnection() {
         return con;
     }
 
-    private ConexionBD() throws SQLException {
+    private DatabaseConnection() throws SQLException {
         String user = "root";
         String password = "root";
         String url = "jdbc:mysql://localhost:3306/severo_ad";
@@ -18,9 +18,9 @@ public class ConexionBD {
 
     }
 
-    public static ConexionBD getInstance() throws SQLException {
+    public static DatabaseConnection getInstance() throws SQLException {
         if (INSTANCE == null){
-            INSTANCE = new ConexionBD();
+            INSTANCE = new DatabaseConnection();
         }
         return INSTANCE;
     }

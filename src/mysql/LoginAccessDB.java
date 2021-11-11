@@ -1,8 +1,7 @@
 package mysql;
 
-import com.mysql.cj.protocol.Resultset;
-import modelo.Login;
-import singleton.ConexionBD;
+
+import singleton.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,13 +15,13 @@ public class LoginAccessDB {
 
     static {
         try {
-            con = ConexionBD.getInstance().getCon();
+            con = DatabaseConnection.getInstance().getConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public static List<Login> getLogins() throws SQLException{
+   /* public static List<Login> getLogins() throws SQLException{
         String sql = "SELECT * from login";
         Statement statement = con.createStatement();
         ResultSet rs = statement.executeQuery(sql);
@@ -41,7 +40,7 @@ public class LoginAccessDB {
     /*
     Comprueba si existe ese usuario con su clave correspondiente en la base de datos
      */
-    public static String getLogin(String name, String password) throws SQLException {
+    /*public static String getLogin(String name, String password) throws SQLException {
         String salida="";
         String sql = "SELECT * FROM login where username LIKE \'"+name+"\' AND password LIKE \'"+ password+"\'";
         Statement statement = con.createStatement();
@@ -99,4 +98,6 @@ public class LoginAccessDB {
         }
 
     }
+
+     */
 }

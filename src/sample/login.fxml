@@ -5,12 +5,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
     <left>
         <AnchorPane prefWidth="228.0" BorderPane.alignment="CENTER">
@@ -27,27 +27,27 @@
    <center>
         <AnchorPane prefHeight="359.0" prefWidth="58.0" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="166.0" layoutY="131.0" text="Usuario">
+                <Label layoutX="166.0" layoutY="124.0" text="Usuario">
                <font>
                   <Font name="Cambria" size="13.0" />
                </font></Label>
-                <Label layoutX="156.0" layoutY="197.0" text="Contraseña">
+                <Label layoutX="156.0" layoutY="190.0" text="Contraseña">
                <font>
                   <Font name="Cambria" size="13.0" />
                </font></Label>
-                <TextField fx:id="tfUsuario" layoutX="112.0" layoutY="157.0" promptText="Usuario" />
-                <PasswordField fx:id="pfContrasenya" layoutX="112.0" layoutY="224.0" promptText="Contraseña" />
-                <Button fx:id="btnEntrar" layoutX="72.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnEntrarOnAction" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #F6911C;" text="Entrar" />
-                <ImageView id="ivAcceso" fitHeight="84.0" fitWidth="91.0" layoutX="150.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                <TextField fx:id="tfUsuario" layoutX="112.0" layoutY="150.0" promptText="Usuario" />
+                <PasswordField fx:id="pfContrasenya" layoutX="112.0" layoutY="217.0" onKeyPressed="#btnControlaMayus" promptText="Contraseña" />
+                <Button fx:id="btnEntrar" layoutX="74.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnEntrarOnAction" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #F6911C;" text="Entrar" />
+                <ImageView id="ivAcceso" fitHeight="84.0" fitWidth="91.0" layoutX="150.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@/img/db.png" />
                     </image>
                 </ImageView>
-                <Label fx:id="laNotContrasenya" layoutX="61.0" layoutY="287.0" textFill="RED">
+                <Label fx:id="laAvisos" layoutX="76.0" layoutY="257.0" prefHeight="16.0" prefWidth="289.0" textFill="RED">
                <font>
                   <Font size="11.0" />
                </font></Label>
+            <Button fx:id="btnSalir" layoutX="74.0" layoutY="338.0" mnemonicParsing="false" onAction="#btnSalirOnAction" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #F6911C;" text="Salir" />
             </children></AnchorPane>
    </center>
 </BorderPane>
-

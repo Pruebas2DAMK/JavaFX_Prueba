@@ -1,43 +1,94 @@
 package sample;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
-import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+import singleton.DatabaseConnection;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class LoginController {
 
 
-
-//********Objetos********//
+    //********Objetos********//
+    private static Connection con;
 
     @FXML
     private Button btnEntrar;
     @FXML
-    private Label laNotContrasenya;
+    private Label laAvisos;
     @FXML
     private PasswordField pfContrasenya;
     @FXML
     private TextField tfUsuario;
+    @FXML
+    private Button btnSalir;
 
-//********Acciones********//
+    //********Acciones********//
+
+    //*******Salir*******//
+    public void btnSalirOnAction(ActionEvent actionEvent) {
+        //Stage es la clase top de JavaFX, capturo la ventana y la cierro
+        Stage stage = (Stage) btnSalir.getScene().getWindow();
+        stage.close();
+    }
 
     public void btnEntrarOnAction(ActionEvent actionEvent) {
-        if (tfUsuario.getText().isEmpty() || pfContrasenya.getText().isEmpty()){
+        String mensaje = "Contraseña Incorrecta. Por favor intentelo de nuevo";
+        if (tfUsuario.getText().isEmpty() || pfContrasenya.getText().isEmpty()) {
             //si los campos estan vacios, limpia contraseña y saca un mensaje de aviso
-            laNotContrasenya.setText("Contraseña Incorrecta. Por favor intentelo de nuevo");
+            laAvisos.setText(mensaje);
             pfContrasenya.clear();
-        } else{
-            //TODO loguearse
+        } else {
+            //*****Conecta a la base de datos y comprueba*****//
+            if (validateLogin() == 0) {
+                laAvisos.setText(mensaje);
+            } else {
+                laAvisos.setText("");
+            }
         }
     }
+
+    //*****Verifica la conexion a la base de datos*****//
+    private int validateLogin() {
+        int valor = 0;
+        try {
+            con = DatabaseConnection.getInstance().getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        String verificaLogin = "SELECT count(1) FROM login WHERE username =\'" + tfUsuario.getText() + "\' AND password = \'" + pfContrasenya.getText() + "\'";
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(verificaLogin);
+            while (rs.next()) {
+                //me devuelve el contador (0 - 1)
+                valor = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        return valor;
+    }
+
+    //*****'Controla' si se ha pulsado la tecla mayuscula (va un poco de lado)*****//
+    public void btnControlaMayus(KeyEvent keyEvent) {
+        if (keyEvent.getText() == keyEvent.getText().toUpperCase()){
+            laAvisos.setText("Bloq Mayus Activado");
+        } else{
+            laAvisos.setText("");
+        }
+
+    }
+
 
 }
