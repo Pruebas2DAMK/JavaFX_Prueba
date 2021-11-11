@@ -1,29 +1,44 @@
 package singleton;
 
+import javax.xml.stream.events.DTD;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class DatabaseConnection {
     private static DatabaseConnection INSTANCE;
-    private final Connection con;
+    private Connection con;
+    private Properties p;
 
     public Connection getConnection() {
         return con;
     }
 
-    private DatabaseConnection() throws SQLException {
-        String user = "root";
-        String password = "root";
-        String url = "jdbc:mysql://localhost:3306/severo_ad";
-        con = DriverManager.getConnection(url,user,password);
+    private DatabaseConnection() throws SQLException, IOException, ClassNotFoundException {
+        p = new Properties();
+        p.load(new BufferedReader(new FileReader("./src/connection.properties")));
+        String user = p.getProperty("user");
+        String password = p.getProperty("password");
+        String url = p.getProperty("url");
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, user, password);
+        }catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
 
     }
 
-    public static DatabaseConnection getInstance() throws SQLException {
+    public static DatabaseConnection getInstance() throws SQLException, IOException, ClassNotFoundException {
         if (INSTANCE == null){
             INSTANCE = new DatabaseConnection();
         }
         return INSTANCE;
     }
-
 
 }

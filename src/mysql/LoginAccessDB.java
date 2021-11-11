@@ -3,6 +3,7 @@ package mysql;
 
 import singleton.DatabaseConnection;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public class LoginAccessDB {
     static {
         try {
             con = DatabaseConnection.getInstance().getConnection();
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
     }

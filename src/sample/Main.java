@@ -1,12 +1,16 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 
@@ -18,6 +22,9 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("img/db.png"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+
+
     }
 
 

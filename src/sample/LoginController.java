@@ -10,6 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import singleton.DatabaseConnection;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,7 +54,7 @@ public class LoginController {
             if (validateLogin() == 0) {
                 laAvisos.setText(mensaje);
             } else {
-                laAvisos.setText("");
+                laAvisos.setText("Conectado con exito");
             }
         }
     }
@@ -62,7 +64,7 @@ public class LoginController {
         int valor = 0;
         try {
             con = DatabaseConnection.getInstance().getConnection();
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
         String verificaLogin = "SELECT count(1) FROM login WHERE username =\'" + tfUsuario.getText() + "\' AND password = \'" + pfContrasenya.getText() + "\'";
