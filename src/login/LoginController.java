@@ -1,4 +1,4 @@
-package sample;
+package login;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import singleton.DatabaseConnection;
@@ -84,7 +83,7 @@ public class LoginController {
 
     //*****'Controla' si se ha pulsado la tecla mayuscula (va un poco de lado)*****//
     public void btnControlaMayus(KeyEvent keyEvent) {
-        if (keyEvent.getText() == keyEvent.getText().toUpperCase()){
+        if (keyEvent.getText() == keyEvent.getText().toUpperCase()){ 
             laAvisos.setText("Bloq Mayus Activado");
         } else{
             laAvisos.setText("");
