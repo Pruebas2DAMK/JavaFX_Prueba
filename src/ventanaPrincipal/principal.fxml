@@ -17,27 +17,27 @@
          <children>
             <Button fx:id="btnAlta" layoutX="177.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="ALTA" textAlignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="12.0" />
+                  <Font name="Georgia Bold" size="16.0" />
                </font></Button>
             <Button fx:id="btnModificar" layoutX="331.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="MODIFICAR" textAlignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="12.0" />
+                  <Font name="Georgia Bold" size="16.0" />
                </font></Button>
             <Button fx:id="BtnEliminar" layoutX="483.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="ELIMINAR" textAlignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="12.0" />
+                  <Font name="Georgia Bold" size="16.0" />
                </font></Button>
             <Button fx:id="btnVerTodo" layoutX="636.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="VER TODO" textAlignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="12.0" />
+                  <Font name="Georgia Bold" size="16.0" />
                </font></Button>
             <Button fx:id="btnContador" layoutX="791.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="CONTADOR" textAlignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="12.0" />
+                  <Font name="Georgia Bold" size="16.0" />
                </font></Button>
             <Button fx:id="btnExportar" layoutX="941.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="EXPORTAR" textAlignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="12.0" />
+                  <Font name="Georgia Bold" size="16.0" />
                </font></Button>
             <Button fx:id="btnDesconectar" layoutX="1153.0" layoutY="33.0" mnemonicParsing="false" style="-fx-background-color: #F6911C;">
                <graphic>
@@ -62,14 +62,14 @@
                   <Image url="@../img/dragonbase.png" />
                </image>
             </ImageView>
-            <Label layoutX="179.0" layoutY="108.0" text="Usuario">
+            <Label layoutX="171.0" layoutY="109.0" text="Usuario">
                <font>
-                  <Font name="Georgia Bold" size="14.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="168.0" layoutY="199.0" text="Contraseña">
+            <Label layoutX="155.0" layoutY="199.0" text="Contraseña">
                <font>
-                  <Font name="Georgia Bold" size="14.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Label>
             <PasswordField fx:id="pfContrasenya" layoutX="130.0" layoutY="239.0" />
