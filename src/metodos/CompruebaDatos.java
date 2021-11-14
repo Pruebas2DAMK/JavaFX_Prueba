@@ -76,7 +76,7 @@ public class CompruebaDatos {
     }
     //****Si eres admin tienes acceso a unas cosas y si no,estas limitado.
    /*
-   TODO primero en sucio en la propia clase y luego intentar abstraer lo maximo
+   TODO
 
     public static void camposUsables(Boolean permisos){
 
