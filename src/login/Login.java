@@ -1,20 +1,30 @@
-import java.sql.Timestamp;
+package login;
 
-    public class Login {
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
+
+public class Login {
         int id;
         String username;
         String password;
         Timestamp created_at;
+        DecimalFormat salario;
+        int admin;
 
-        public Login(int id, String username, String password, Timestamp created_at) {
+        public Login(int id, String username, String password, Timestamp created_at, DecimalFormat salario, int admin) {
             this.id = id;
             this.username = username;
             this.password = password;
             this.created_at = created_at;
+            this.salario = salario;
+            this.admin = admin;
+        }
+        public Login(String username) {
+            this.username = username;
         }
 
         public Login() {
-        }
+            }
 
         public Login(String username, String password) {
             this.username = username;

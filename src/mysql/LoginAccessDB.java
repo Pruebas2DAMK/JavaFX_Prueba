@@ -22,14 +22,14 @@ public class LoginAccessDB {
         }
     }
 
-   /* public static List<Login> getLogins() throws SQLException{
+   /* public static List<login.Login> getLogins() throws SQLException{
         String sql = "SELECT * from login";
         Statement statement = con.createStatement();
         ResultSet rs = statement.executeQuery(sql);
-        List<Login> logins = new ArrayList<>();
+        List<login.Login> logins = new ArrayList<>();
 
         while (rs.next()){
-            Login login = new Login();
+            login.Login login = new login.Login();
             login.setId(rs.getInt("id"));
             login.setUsername(rs.getString("username"));
             login.setPassword(rs.getString(3));
@@ -46,7 +46,7 @@ public class LoginAccessDB {
         String sql = "SELECT * FROM login where username LIKE \'"+name+"\' AND password LIKE \'"+ password+"\'";
         Statement statement = con.createStatement();
         ResultSet rs = statement.executeQuery(sql);
-        Login login = new Login();
+        login.Login login = new login.Login();
 
            if(rs.next() == false){
                  salida="Contraseña o usuario incorrectos";
@@ -59,19 +59,19 @@ public class LoginAccessDB {
            }
         return salida;
     }
-    public static void insertaUser(Login login) throws SQLException {
+    public static void insertaUser(login.Login login) throws SQLException {
         String sql = "INSERT INTO login (username,password)VALUES (\'"+login.getUsername()+"\',\'"+login.getPassword()+"\')";
         Statement statement = con.createStatement();
         statement.executeUpdate(sql);
 
     }
-    public static void borraUser(Login login) throws SQLException {
+    public static void borraUser(login.Login login) throws SQLException {
         String sql = "DELETE FROM login WHERE username LIKE \'"+login.getUsername()+"\'";
         Statement statement = con.createStatement();
         statement.executeUpdate(sql);
     }
 
-    public static void actualizaUser(Login login) throws SQLException {
+    public static void actualizaUser(login.Login login) throws SQLException {
         String sql = "UPDATE login set username = \'"+login.getUsername()+"\' , password = \'"+login.getPassword()+"\' WHERE id = "+login.getId();
         //System.out.println(sql);
         Statement statement = con.createStatement();

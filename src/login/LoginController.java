@@ -1,28 +1,23 @@
 package login;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import metodos.CompruebaDatos;
-import singleton.DatabaseConnection;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import static metodos.CompruebaDatos.*;
+import java.io.IOException;
+
+import static metodos.CompruebaDatos.compruebaCamposLogin;
 
 public class LoginController {
 
 
     //********Objetos********//
-
+    static Login login;
 
     @FXML
     private Button btnEntrar;
@@ -44,8 +39,10 @@ public class LoginController {
         stage.close();
     }
     //****Controla los campos y devuelve un label con mensaje
-    public void btnEntrarOnAction(ActionEvent actionEvent) {
-        compruebaCamposLogin(tfUsuario.getText(), pfContrasenya.getText(), laAvisos);
+    public void btnEntrarOnAction(ActionEvent actionEvent) throws IOException {
+        login = new Login(tfUsuario.getText());
+        compruebaCamposLogin(tfUsuario.getText(), pfContrasenya, laAvisos);
+
     }
     //*****'Controla' si se ha pulsado la tecla mayuscula (va un poco de lado)*****//
     public void btnControlaMayus(KeyEvent keyEvent) {
@@ -57,5 +54,8 @@ public class LoginController {
 
     }
 
-
+    //***Buscando medios para recuperar datos***//
+    public static String getUserLogin() {
+        return login.getUsername();
+    }
 }

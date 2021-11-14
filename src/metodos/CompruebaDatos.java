@@ -1,8 +1,8 @@
 package metodos;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import singleton.DatabaseConnection;
-import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -37,19 +37,57 @@ public class CompruebaDatos {
     }
 
     //******Comprueba que los campos no estas vacios******//
-    public static void compruebaCamposLogin(String usuario, String contrasenya, Label label){
+    public static void compruebaCamposLogin(String usuario, PasswordField contrasenya, Label label) throws IOException {
         String mensaje = "Contraseña Incorrecta. Por favor intentelo de nuevo";
-        if (usuario.isEmpty() || contrasenya.isEmpty()) {
+        if (usuario.isEmpty() || contrasenya.getText().isEmpty()) {
             label.setText(mensaje);
-            contrasenya = "";
+            contrasenya.setText("");
         } else {
             //*****Conecta a la base de datos y comprueba*****//
-            if (validateLogin(usuario,contrasenya) == 0) {
+            if (validateLogin(usuario,contrasenya.getText()) == 0) {
                 label.setText(mensaje);
             } else {
-                label.setText("Conectado con exito");
+                contrasenya.setText("");
+                //abre la nueva ventana
+                new ventanas().creaVentanaPrincipal();
+
             }
         }
     }
+    //*******Metodo que comprueba si el usuario conectado tiene 'permisos'*******//
+    public static boolean isSuperUsuario(String usuario) throws SQLException {
+        boolean resultado = false;
+        int salida;
+        String query = "SELECT admin FROM login WHERE username =\'"+usuario+"\'";
+        //TODO hacer metodo de esto para simplificar, se reutiliza
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                //me devuelve el contador (0 - 1)
+                salida = rs.getInt(1);
+                if (salida == 0){
+                    resultado = false;
+                } else{
+                    resultado = true;
+                }
+              
+            }
+        return resultado;
+    }
+    //****Si eres admin tienes acceso a unas cosas y si no,estas limitado.
+   /*
+   TODO primero en sucio en la propia clase y luego intentar abstraer lo maximo
+
+    public static void camposUsables(Boolean permisos){
+
+        if (!permisos){
+
+        }
+
+    }
+     */
+
+
+
 
 }
