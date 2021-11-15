@@ -23,7 +23,6 @@ public class AnyadeDatos {
         }
     }
 
-    ;
     private static Login l;
 
     //****Añade un usuario****//
@@ -34,5 +33,15 @@ public class AnyadeDatos {
         statement.executeUpdate(sql);
     return l;
 }
+
+    //****Modifica un usuario****//
+    public static Login modificaUsuario(String usuario,String contrasenya,int salario, int admin) throws SQLException {
+        //si no es admin, salario = salario anterior en el controlador
+        l = new Login(usuario,contrasenya,salario,admin);
+        String query = "UPDATE login set username = \'"+usuario+"\' , password = \'"+contrasenya+"\', salario = "+salario+", admin = "+admin+" WHERE id = "+l.getId();
+        Statement statement = con.createStatement();
+        statement.executeUpdate(query);
+        return l;
+    }
 
 }

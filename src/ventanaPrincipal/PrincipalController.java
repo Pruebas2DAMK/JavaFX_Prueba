@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import static login.LoginController.getUserLogin;
 import static metodos.AnyadeDatos.anyadeUsuario;
+import static metodos.AnyadeDatos.modificaUsuario;
 import static metodos.CompruebaDatos.*;
 
 public class PrincipalController {
@@ -107,8 +108,14 @@ public class PrincipalController {
     //****Boton modificar solo funciona si eres admin o tu nombre aparece en la casilla de usuario****//
     @FXML
     void btnModificarOnAction(ActionEvent event) throws SQLException {
-        if ( (tfUsuario.getText() == getUserLogin() )|| (isSuperUsuario(getUserLogin())) ){
-        //TODO implementar solo para estos casos
+
+        if ( (tfUsuario.getText().equals( getUserLogin()) )|| (isSuperUsuario(getUserLogin())) ){
+            Login usuarioModificado = modificaUsuario(tfUsuario.getText(),pfContrasenya.getText(),Integer.parseInt(tfSalario.getText()),isSuperUsuario(tfUsuario.getText())?1:0);
+            taResultado.setText(tfUsuario.getText()+" Modificado Satisfactoriamente");
+            btnExportar.setDisable(false);
+        }else{
+            pfContrasenya.setText("");tfUsuario.setText(getUserLogin());
+            laAvisos.setText("No tienes permisos para modificar otros usuarios");
         }
     }
 
@@ -151,9 +158,6 @@ public class PrincipalController {
             tfSalario.setDisable(true);
             btnBorrarTodo.setDisable(true);
 
-            tfSalario.setVisible(false);
-            laSalario.setVisible(false);
-            ckbAdmin.setVisible(false);
             btnBorrarTodo.setVisible(false);
 
         }else{
