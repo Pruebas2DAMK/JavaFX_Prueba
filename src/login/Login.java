@@ -128,7 +128,6 @@ public class Login {
                 "ID -> " + id +"\n"+
                 "Usuario -> " + username +"\n" +
                 "Contraseña -> " + password + "\n" +
-                "Fecha Registro -> " + created_at +"\n"+
                 "Salario -> " + salario +"\n"+
                 "Permisos -> " + admin +"\n" +
                 "-------------------------------\n";
