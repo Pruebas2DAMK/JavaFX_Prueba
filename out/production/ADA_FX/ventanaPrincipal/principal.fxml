@@ -32,14 +32,14 @@
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor></Button>
-            <Button fx:id="BtnEliminar" layoutX="483.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="ELIMINAR" textAlignment="CENTER">
+            <Button fx:id="BtnEliminar" layoutX="483.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnEliminarOnAction" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="ELIMINAR" textAlignment="CENTER">
                <font>
                   <Font name="Georgia Bold" size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor></Button>
-            <Button fx:id="btnVerTodo" layoutX="791.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="VER" textAlignment="CENTER">
+            <Button fx:id="btnVerTodo" layoutX="791.0" layoutY="24.0" mnemonicParsing="false" onAction="#verOnAction" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="VER" textAlignment="CENTER">
                <font>
                   <Font name="Georgia Bold" size="16.0" />
                </font>

@@ -11,12 +11,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import static login.LoginController.getUserLogin;
-import static metodos.AnyadeDatos.anyadeUsuario;
-import static metodos.AnyadeDatos.modificaUsuario;
 import static metodos.CompruebaDatos.*;
+import static metodos.ModificaDatos.*;
 
 public class PrincipalController {
-
+    public static int num;
     @FXML
     private Button BtnEliminar;
     @FXML
@@ -90,20 +89,24 @@ public class PrincipalController {
     void cbOrdenSalarioOnAction(ActionEvent event) {
     cbOrdenSalario.setOnAction( e ->{
         switch (cbOrdenSalario.getValue().toString()){
-            case "MAYOR":
-                //TODO
-                System.out.println("a");
-                break;
             case "MENOR":
-                //TODO
-                System.out.println("b");
+                num = 1;
+                break;
+            case "MAYOR":
+                num = 2;
                 break;
             case "DEFECTO":
-                //TODO
-                System.out.println("c");
-                break;
+                num = 0;
         }
     });
+    }
+
+    //*****Devolucion de los usuarios por pantalla*****//
+    @FXML
+    void verOnAction(ActionEvent event) throws SQLException {
+        taResultado.setText(getDatosUsuarios());
+        btnExportar.setDisable(false);
+
     }
     //****Boton modificar solo funciona si eres admin o tu nombre aparece en la casilla de usuario****//
     @FXML
@@ -117,6 +120,25 @@ public class PrincipalController {
             pfContrasenya.setText("");tfUsuario.setText(getUserLogin());
             laAvisos.setText("No tienes permisos para modificar otros usuarios");
         }
+    }
+
+    //*****Elimina si eres admin*****//
+    @FXML
+    void btnEliminarOnAction(ActionEvent event) throws SQLException, IOException, ClassNotFoundException {
+        if (isSuperUsuario(getUserLogin())){
+            //si existe el usuario escrito y la contraseña coincide entonces puedes borrarlo
+            if ((isUsuarioExistente(new Login(tfUsuario.getText()))) && (validateLogin(tfUsuario.getText() , pfContrasenya.getText()) == 1)){
+                eliminaUsuario(new Login(tfUsuario.getText()));
+                if (!isUsuarioExistente(new Login(tfUsuario.getText()))){
+                    taResultado.setText("El usuario "+tfUsuario.getText()+" ha sido eliminado satisfactoriamente");
+                    btnExportar.setDisable(false);
+                }
+            }else{
+                laAvisos.setText("Datos incorrectos");
+                tfUsuario.setText("");tfSalario.setText("");pfContrasenya.setText("");ckbAdmin.setSelected(false);
+            }
+        }
+
     }
 
     //*****'Controla' si se ha pulsado la tecla mayuscula (va un poco de lado)*****//
