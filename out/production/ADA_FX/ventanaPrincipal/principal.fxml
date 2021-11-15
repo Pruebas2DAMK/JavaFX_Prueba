@@ -46,7 +46,7 @@
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor></Button>
-            <Button fx:id="btnExportar" layoutX="941.0" layoutY="24.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="EXPORTAR" textAlignment="CENTER">
+            <Button fx:id="btnExportar" layoutX="941.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnExportarOnAction" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: #ffc806;" text="EXPORTAR" textAlignment="CENTER">
                <font>
                   <Font name="Georgia Bold" size="16.0" />
                </font>
@@ -133,7 +133,7 @@
       <AnchorPane prefHeight="60.0" prefWidth="1257.0" style="-fx-background-color: #F6911C;" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="laSaludoUsuario" layoutX="23.0" layoutY="22.0" text="Bienvenido de nuevo: " />
-            <Button fx:id="btnBorrarTodo" layoutX="1091.0" layoutY="19.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="108.0" style="-fx-background-color: #ffc806;" text="Borrar BD" textAlignment="CENTER">
+            <Button fx:id="btnBorrarTodo" layoutX="1091.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnBorrarTodoOnAction" prefHeight="0.0" prefWidth="108.0" style="-fx-background-color: #ffc806;" text="Borrar BD" textAlignment="CENTER">
                <font>
                   <Font name="Georgia Bold Italic" size="12.0" />
                </font>

@@ -4,12 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import login.Login;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static exportar.guardarArchivo.guardaFicheroTXT;
 import static login.LoginController.getUserLogin;
 import static metodos.CompruebaDatos.*;
 import static metodos.ModificaDatos.*;
@@ -141,6 +144,32 @@ public class PrincipalController {
 
     }
 
+    //*********Borrar la bd y dejar un usuario por defecto*********//
+    @FXML
+    void btnBorrarTodoOnAction(ActionEvent event) throws SQLException, InterruptedException {
+        reseteaBD();
+        taResultado.setText("Base de datos restablecida a estado de fabrica");
+        tfUsuario.setText("root");tfSalario.setText("");pfContrasenya.setText("");ckbAdmin.setSelected(true);tfSalario.setText("0");laSaludoUsuario.setText("");
+    }
+    @FXML
+    void btnExportarOnAction(ActionEvent event){
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+
+        //establece extension
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos TXT (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //muestra ventana guardar
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            guardaFicheroTXT(taResultado.getText(), file);
+        }
+    }
+
+
+
     //*****'Controla' si se ha pulsado la tecla mayuscula (va un poco de lado)*****//
     public void btnControlaMayus(KeyEvent keyEvent) {
         if (keyEvent.getText() == keyEvent.getText().toUpperCase()){
@@ -164,6 +193,8 @@ public class PrincipalController {
         cbOrdenSalario.setStyle("-fx-font: 16px  \"Georgia\";" +
                 "-fx-background-color:  #ffc806;"+
                 " -fx-font-weight: bold;");
+
+        taResultado.setStyle("-fx-font: 16px  \"Georgia\";  -fx-font-weight: bold; -fx-text-alignment: center;");
 
         //****Recupero datos del usuario que se ha logueado****//
         laSaludoUsuario.setText(laSaludoUsuario.getText()+" "+getUserLogin());//La forma en la que se me ha ocurrido recuperar el nombre de usuario.

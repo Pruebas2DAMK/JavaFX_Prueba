@@ -54,6 +54,22 @@ public class ModificaDatos {
         Statement statement = con.createStatement();
         statement.executeUpdate(query);
     }
+
+    //****Metodo que los elimina a todos****//
+    public static void reseteaBD() throws SQLException {
+        //recibo todos los usuarios como objetos
+        datosUsuarios(0).forEach( e->{
+            try {
+                //y los elimino de la base de datos
+                eliminaUsuario(e);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+        //creo el usuario por defecto root
+        anyadeUsuario("root","root",0,1);
+    }
+
     //*****los usuarios convertidos en objetos*****//
     public static List<Login> datosUsuarios(int num) throws SQLException {
         List<Login> datos =new ArrayList<>();
@@ -84,9 +100,5 @@ public class ModificaDatos {
             salida[0] +=e.toString();
         });
         return salida[0];
-    }
-
-    public static void main(String[] args) throws SQLException {
-        //System.out.println(getDatosUsuarios());
     }
 }
