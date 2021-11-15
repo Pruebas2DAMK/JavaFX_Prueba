@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ventanas {
+public class ventana {
 
     //****Crea la ventana de manejo de datos****//
     public void creaVentanaPrincipal(){

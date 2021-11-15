@@ -30,6 +30,19 @@ public class Login {
 
     }
 
+    public Login(String username, String password, int salario, int admin) {
+        try {
+            con = DatabaseConnection.getInstance().getConnection();
+        } catch (SQLException | IOException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+        this.username = username;
+        this.password = password;
+        this.salario = salario;
+        this.admin = admin;
+        this.setValues();
+    }
+
     public Login(String username) {
         try {
             con = DatabaseConnection.getInstance().getConnection();

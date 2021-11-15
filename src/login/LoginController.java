@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static metodos.CompruebaDatos.compruebaCamposLogin;
 
@@ -39,7 +40,7 @@ public class LoginController {
         stage.close();
     }
     //****Controla los campos y devuelve un label con mensaje
-    public void btnEntrarOnAction(ActionEvent actionEvent) throws IOException {
+    public void btnEntrarOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         login = new Login(tfUsuario.getText());
         compruebaCamposLogin(tfUsuario.getText(), pfContrasenya, laAvisos);
 

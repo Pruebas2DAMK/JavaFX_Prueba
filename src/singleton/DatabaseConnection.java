@@ -1,11 +1,11 @@
 package singleton;
 
-import javax.xml.stream.events.DTD;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseConnection {
@@ -17,7 +17,7 @@ public class DatabaseConnection {
         return con;
     }
 
-    private DatabaseConnection() throws SQLException, IOException, ClassNotFoundException {
+    public DatabaseConnection() throws SQLException, IOException, ClassNotFoundException {
         p = new Properties();
         p.load(new BufferedReader(new FileReader("./src/connection.properties")));
         String user = p.getProperty("user");
