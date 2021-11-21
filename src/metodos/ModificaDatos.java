@@ -101,4 +101,17 @@ public class ModificaDatos {
         });
         return salida[0];
     }
+
+    //******Devolucion de busqueda******//
+    public static Login getBusquedaUsuario(String nombre) throws SQLException {
+        Login l = null;
+        String sql = "SELECT * FROM login WHERE username = \'"+nombre+"\'";
+        Statement statement = con.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
+        while (rs.next()){
+            l = ( new Login(rs.getString("username")));
+
+        }
+        return l;
+    }
 }

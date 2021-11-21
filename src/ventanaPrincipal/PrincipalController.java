@@ -52,6 +52,11 @@ public class PrincipalController {
     @FXML
     private Button btnBorrarTodo;
 
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private TextField tfBuscar;
+
     //*************Funcionamiento Controladores*************//
 
     //****Da de alta a un usuario****//
@@ -111,6 +116,21 @@ public class PrincipalController {
         btnExportar.setDisable(false);
 
     }
+    //****Devolucion de busqueda por pantalla*****//
+    @FXML
+    void btnBuscarOnAction(ActionEvent event) throws SQLException {
+        //taResultado.setText(); //lo que reciba de una busqueda con el tfBuscar
+        if (isUsuarioExistente(new Login(tfBuscar.getText()))){
+            taResultado.setText(getBusquedaUsuario(tfBuscar.getText()).toString());
+            taResultado.setDisable(false);
+            btnExportar.setDisable(false);
+        }else{
+            taResultado.setText("El usuario buscado no existe");
+            btnExportar.setDisable(true);
+        }
+
+    }
+
     //****Boton modificar solo funciona si eres admin o tu nombre aparece en la casilla de usuario****//
     @FXML
     void btnModificarOnAction(ActionEvent event) throws SQLException {
